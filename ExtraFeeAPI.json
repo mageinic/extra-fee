@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "f5ecd056-6140-4aff-b359-9de67eaf79be",
+		"name": "ExtraFeeAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get details using entity id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/V1/order/extrafee/2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"V1",
+						"order",
+						"extrafee",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/all/V1/order/extrafee/?searchCriteria[filterGroups][0][filters][0][field]=extra_fee&searchCriteria[filterGroups][0][filters][0][value]=18&searchCriteria[pageSize]=1&searchCriteria[currentPage]=1",
+					"protocol": "https",
+					"host": [
+						"magento245",
+						"mageinic",
+						"com"
+					],
+					"path": [
+						"rest",
+						"all",
+						"V1",
+						"order",
+						"extrafee",
+						""
+					],
+					"query": [
+						{
+							"key": "searchCriteria[filterGroups][0][filters][0][field]",
+							"value": "extra_fee"
+						},
+						{
+							"key": "searchCriteria[filterGroups][0][filters][0][value]",
+							"value": "18"
+						},
+						{
+							"key": "searchCriteria[pageSize]",
+							"value": "1"
+						},
+						{
+							"key": "searchCriteria[currentPage]",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer Cart Detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjgsInV0eXBpZCI6MiwiaWF0IjoxNjk3NDQzOTgzLCJleHAiOjE2OTc0NDc1ODN9.-8IPCE8Qcy650Pl8fxv4js9swHIIV0dBgNjL8cxUDiQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/rest/V1/carts/90",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"V1",
+						"carts",
+						"90"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

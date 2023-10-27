@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_ExtraFee
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                mageinic_extra_fee_extrafee_form.mageinic_extra_fee_extrafee_form_data_source
+            </item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Extra Fee</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="MageINIC\ExtraFee\Block\Adminhtml\Buttons\Savebutton"/>
+            <button name="back" class="MageINIC\ExtraFee\Block\Adminhtml\Buttons\Backbutton"/>
+            <button name="delete" class="MageINIC\ExtraFee\Block\Adminhtml\Buttons\DeleteButton"/>
+            <button name="save_and_continue" class="MageINIC\ExtraFee\Block\Adminhtml\Buttons\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>mageinic_extra_fee_extrafee_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>mageinic_extra_fee_extrafee_form.mageinic_extra_fee_extrafee_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="mageinic_extra_fee_extrafee_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="extra_fee/extrafee/save"/>
+        </settings>
+        <dataProvider class="MageINIC\ExtraFee\Model\DataProvider"
+                      name="mageinic_extra_fee_extrafee_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">extrafee</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>entity_id</dataScope>
+            </settings>
+        </field>
+        <field name="status"
+               component="Magento_Ui/js/form/element/single-checkbox-toggle-notice" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="notices" xsi:type="array">
+                        <item name="0" xsi:type="string" translate="true">Disable</item>
+                        <item name="1" xsi:type="string" translate="true">Enable</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Is Enable</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="title" sortOrder="10" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">extrafee</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+        <field name="min_amount" sortOrder="50" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">extrafee</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Minimum Amount of Order Total</label>
+                <dataScope>min_amount</dataScope>
+            </settings>
+        </field>
+        <field name="max_amount" sortOrder="60" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">extrafee</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Maximum Amount of Order Total</label>
+                <dataScope>max_amount</dataScope>
+            </settings>
+        </field>
+        <field name="storeviews" formElement="multiselect" class="Magento\Store\Ui\Component\Form\Field\StoreView">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">extrafee</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <tooltip>
+                    <link>https://docs.magento.com/user-guide/configuration/scope.html</link>
+                    <description>What is this?</description>
+                </tooltip>
+                <label translate="true">Store View</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="MageINIC\ExtraFee\Ui\Component\Listing\Column\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="paymentmethod" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Payment Method</label>
+                <dataScope>paymentmethod</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="MageINIC\ExtraFee\Ui\Component\Listing\Column\PaymentMethodOption"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="extra_fee" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">extrafee</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Extra Fee</label>
+                <dataScope>extra_fee</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>
