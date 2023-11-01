@@ -1,0 +1,30 @@
+{
+    "name": "mageinic/extra-fee",
+    "description": "Extra Fee by MageINIC. Extra fees displayed on the cart and checkout pages promote order transparency, with the option to apply these fees based on the chosen payment method. Additionally, you can define order total limits to determine when extra fees should be applied.",
+    "require": {
+        "php": "^8.0",
+        "mageinic/core": "1.0.*",
+        "magento/module-sales" : "103.0.*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+   "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "MageINIC",
+            "email": "support@mageinic.com",
+            "homepage": "https://www.mageinic.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageINIC\\ExtraFee\\": ""
+        }
+    }
+}
